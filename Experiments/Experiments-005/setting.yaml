@@ -1,0 +1,37 @@
+---
+description:
+    abstract: 'Image Denoising with UNet'
+data:
+    rep_data: '/Users/melissa.amr/Desktop/Base/'
+    training: 0.8  # proportion of data for training.
+    validation: 0.05  # proportion of data for validation.
+    test: 0.15  # proportion of data for test.
+    seed: 4
+image_transforms:  # transforms to be applied to images.
+    discretization: True  # Discretization of image intensity.
+    glmax: 255   # Maximal intensity value if discretization.
+    normalization: True   # Normalization of the image intensity.
+    noise: True  # Creating a noisy image.
+    sigma: 0.001  # Noise variance if noisy image is created.
+    crop : False
+model:
+    archi: 'CNN pyramid'
+    application: 'Estimation of H'
+    nlayers_conv: 4 #
+    skip_connections: True
+    train_conv: True
+    group_conv: True
+    nlayers_dense: 3 #
+    units_dense: 64 #
+    activation_dense: "relu"
+    cells_last: 1
+    activation_last: "sigmoid"
+    sym: True
+optimization:
+    optimizer: 'Adam'
+    lr: 0.01
+    seed: 12
+    loss: 'MSE'
+    batch_size: 20
+    nb_epochs: 10
+...
